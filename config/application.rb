@@ -8,11 +8,18 @@ configure :development, :test do
   require 'pry'
 end
 
+configure :production do
+  require 'rack/ssl'
+  use Rack::SSL
+end
+
 # For all environments, run the following code
 configure do
   # Load the following libraries
   require 'sinatra/activerecord'
   require 'sinatra/flash'
+  require 'sinatra/reloader'
+  require 'sanitize'
   require 'omniauth-github'
 
   # Load all .rb files in the app folder
@@ -29,6 +36,6 @@ configure do
 
   # Set Github as an OmniAuth provider
   use OmniAuth::Builder do
-    provider :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_CLIENT_SECRET'], scope: 'user:email'
+    provider :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_CLIENT_SECRET']
   end
 end

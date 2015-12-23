@@ -11,6 +11,8 @@ helpers do
   end
 end
 
+#------------ routes
+
 get '/' do
   erb :index
 end
@@ -18,7 +20,7 @@ end
 get '/auth/github/callback' do
   user = User.find_or_create_from_omniauth(env['omniauth.auth'])
   session[:user_id] = user.id
-  flash[:notice] = "You're now signed in as #{user.username}!"
+  flash[:notice] = "Welcome, #{user.username}!"
 
   redirect '/'
 end

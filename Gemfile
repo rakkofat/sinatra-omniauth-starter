@@ -6,6 +6,9 @@ gem 'rake'
 gem 'sinatra'
 gem 'sinatra-activerecord'
 gem 'sinatra-flash'
+gem 'sinatra-reloader'
+gem 'sanitize'
+gem 'rack-ssl'
 
 group :development, :test do
   gem 'capybara'
